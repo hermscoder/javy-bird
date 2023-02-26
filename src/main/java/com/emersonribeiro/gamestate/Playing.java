@@ -43,6 +43,7 @@ public class Playing extends State implements StateMethods {
 
 
     public void draw(Graphics g) {
+        //TODO Draw playing related stuff, obstacles, player, etc
         g.drawString(keyPressedBuffer.toString(), 20, 20);
         //TODO Draw playing related stuff, obstacles, player, etc
         player.draw(g);
