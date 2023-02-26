@@ -2,6 +2,7 @@ package com.emersonribeiro.main;
 
 
 import com.emersonribeiro.gamestate.GameState;
+import com.emersonribeiro.gamestate.Playing;
 
 import java.awt.*;
 
@@ -17,7 +18,9 @@ public class Game {
     public static final int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
     public static final int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 
-    private GamePanel gamePanel;
+    private final GamePanel gamePanel;
+
+    private Playing playing;
 
     public Game() {
         initClasses();
@@ -29,14 +32,14 @@ public class Game {
     }
 
     private void initClasses() {
-        //TODO initialize all the state classes and its dependencies
+        playing = new Playing(this);
     }
 
     private void startGameLoop() {
         var gameThread = new Thread(
                 new GameLoop(
                         this::update,
-                        () -> gamePanel.repaint())
+                        gamePanel::repaint)
         );
         gameThread.start();
     }
@@ -44,7 +47,7 @@ public class Game {
     public void update() {
         switch (GameState.state) {
             case PLAYING:
-                //TODO update playing state
+                playing.update();
                 break;
             case MENU:
                 //TODO update menu state
@@ -60,7 +63,7 @@ public class Game {
     public void render(Graphics g) {
         switch (GameState.state) {
             case PLAYING:
-                //TODO render playing state
+                playing.draw(g);
                 break;
             case MENU:
                 //TODO render menu state
@@ -74,4 +77,7 @@ public class Game {
             System.out.println("Come back to the game!");
     }
 
+    public Playing getPlaying() {
+        return playing;
+    }
 }
