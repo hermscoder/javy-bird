@@ -1,5 +1,8 @@
 package com.emersonribeiro.main;
 
+import com.emersonribeiro.input.KeyboardInputs;
+import com.emersonribeiro.input.MouseInputs;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +17,8 @@ public class GamePanel extends JPanel {
     public GamePanel(Game game) {
 
         setPanelSize();
-
+        addKeyListener(new KeyboardInputs(this));
+        addMouseListener(new MouseInputs(this));
         this.game = game;
     }
 
