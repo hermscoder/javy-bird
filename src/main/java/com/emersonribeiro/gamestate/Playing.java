@@ -2,6 +2,7 @@ package com.emersonribeiro.gamestate;
 
 
 import com.emersonribeiro.entity.Player;
+import com.emersonribeiro.level.LevelRender;
 import com.emersonribeiro.main.Game;
 
 import java.awt.Graphics;
@@ -15,6 +16,7 @@ public class Playing extends State implements StateMethods {
     private boolean clearBuffer;
 
     private Player player;
+    private LevelRender levelRender;
 
     public Playing(Game game) {
         super(game);
@@ -23,6 +25,7 @@ public class Playing extends State implements StateMethods {
 
     private void initClasses() {
         keyPressedBuffer = new StringBuilder();
+        levelRender = new LevelRender();
         player = new Player(20, 20, 40, 40);
     }
 
@@ -39,6 +42,7 @@ public class Playing extends State implements StateMethods {
     public void draw(Graphics g) {
         g.drawString(keyPressedBuffer.toString(), 20, 20);
         //TODO Draw playing related stuff, obstacles, player, etc
+        levelRender.draw(g);
         player.draw(g);
     }
 
