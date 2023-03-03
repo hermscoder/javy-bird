@@ -1,6 +1,7 @@
 package com.emersonribeiro.gamestate;
 
 
+import com.emersonribeiro.entity.Player;
 import com.emersonribeiro.main.Game;
 
 import java.awt.Graphics;
@@ -13,6 +14,8 @@ public class Playing extends State implements StateMethods {
     private StringBuilder keyPressedBuffer;
     private boolean clearBuffer;
 
+    private Player player;
+
     public Playing(Game game) {
         super(game);
         initClasses();
@@ -20,6 +23,7 @@ public class Playing extends State implements StateMethods {
 
     private void initClasses() {
         keyPressedBuffer = new StringBuilder();
+        player = new Player(20, 20, 40, 40);
     }
 
 
@@ -33,8 +37,9 @@ public class Playing extends State implements StateMethods {
 
 
     public void draw(Graphics g) {
-        //TODO Draw playing related stuff, obstacles, player, etc
         g.drawString(keyPressedBuffer.toString(), 20, 20);
+        //TODO Draw playing related stuff, obstacles, player, etc
+        player.draw(g);
     }
 
     @Override
