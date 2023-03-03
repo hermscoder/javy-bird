@@ -3,6 +3,7 @@ package com.emersonribeiro.gamestate;
 
 import com.emersonribeiro.entity.Player;
 import com.emersonribeiro.level.LevelRender;
+import com.emersonribeiro.object.ObjectManager;
 import com.emersonribeiro.main.Game;
 
 import java.awt.Graphics;
@@ -17,6 +18,7 @@ public class Playing extends State implements StateMethods {
 
     private Player player;
     private LevelRender levelRender;
+    private ObjectManager objectManager;
 
     public Playing(Game game) {
         super(game);
@@ -27,6 +29,7 @@ public class Playing extends State implements StateMethods {
         keyPressedBuffer = new StringBuilder();
         levelRender = new LevelRender();
         player = new Player(20, 20, 40, 40);
+        objectManager = new ObjectManager();
     }
 
 
@@ -44,6 +47,7 @@ public class Playing extends State implements StateMethods {
         //TODO Draw playing related stuff, obstacles, player, etc
         levelRender.draw(g);
         player.draw(g);
+        objectManager.draw(g);
     }
 
     @Override
